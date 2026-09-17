@@ -1,448 +1,306 @@
-# 🌙 Sleep Quality Predictor — AI/ML Web Application
+<div align="center">
 
-### Full Project Documentation
+# 🌙 Sleep Quality Predictor
 
----
+### An AI-Powered Full-Stack Web Application for Sleep Health Analysis
 
-> **Project Title:** Sleep Quality Prediction System  
-> **Domain:** Machine Learning · Health Analytics · Web Development  
-> **Stack:** Python (Scikit-Learn, Flask) + Next.js (React)  
-> **Date:** August 2026  
-> **Author:** Akash  
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![Flask](https://img.shields.io/badge/Flask-REST%20API-green?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-ML%20Engine-orange?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![Accuracy](https://img.shields.io/badge/Best%20Model-98.7%25%20Accuracy-brightgreen?style=for-the-badge)](/)
 
----
+> **Author:** Akash &nbsp;|&nbsp; **Domain:** ML · Health Analytics · Web Dev &nbsp;|&nbsp; **Year:** 2026
 
-## 📌 Table of Contents
-
-1. [Project Overview](#-project-overview)
-2. [Problem Statement](#-problem-statement)
-3. [Dataset Description](#-dataset-description)
-4. [System Architecture](#-system-architecture)
-5. [Machine Learning Pipeline](#-machine-learning-pipeline)
-6. [Model Comparison & Results](#-model-comparison--results)
-7. [Feature Importance Analysis](#-feature-importance-analysis)
-8. [Web Application — Frontend](#-web-application--frontend)
-9. [REST API — Backend](#-rest-api--backend)
-10. [Project File Structure](#-project-file-structure)
-11. [How to Run the Project](#-how-to-run-the-project)
-12. [Screenshots & UI Pages](#-screenshots--ui-pages)
-13. [Key Technical Decisions](#-key-technical-decisions)
-14. [Limitations & Disclaimer](#-limitations--disclaimer)
-15. [Future Improvements](#-future-improvements)
-16. [Technologies Used](#-technologies-used)
-17. [References](#-references)
+</div>
 
 ---
 
-## 🔍 Project Overview
+## 📋 Table of Contents
 
-The **Sleep Quality Predictor** is a full-stack AI/ML web application that analyzes a user's lifestyle, health, and sleep pattern data to predict their **sleep quality** as one of three classes:
-
-| Class | Criteria | Color Code |
-|-------|----------|------------|
-| **Good** | Quality of Sleep score ≥ 8 | 🟢 `#10B981` |
-| **Average** | Quality of Sleep score 5 – 7 | 🟡 `#F59E0B` |
-| **Poor** | Quality of Sleep score < 5 | 🔴 `#EF4444` |
-
-The system trains **four supervised machine learning models**, compares their performance, and serves real-time predictions through a modern **black-and-yellow themed AI dashboard** built in Next.js.
-
----
-
-## 🎯 Problem Statement
-
-Sleep is one of the most critical factors affecting human health, productivity, and well-being. Yet many individuals are unable to objectively assess how their daily habits — stress, exercise, BMI, heart rate — influence their sleep quality.
-
-**Objective:**  
-Build a machine learning classification system that can:
-
-1. Accept 12 lifestyle & health input features from a user
-2. Predict whether their sleep quality is **Good**, **Average**, or **Poor**
-3. Display the prediction with confidence scores, contributing factors, and actionable recommendations
-4. Compare multiple ML algorithms and highlight the best performer
-5. Present everything through a premium, responsive web dashboard
+| # | Section |
+|---|---------|
+| 1 | [🔍 What Is This Project?](#-what-is-this-project) |
+| 2 | [🎯 The Problem We're Solving](#-the-problem-were-solving) |
+| 3 | [📊 Dataset Overview](#-dataset-overview) |
+| 4 | [🏗️ How The System Works](#️-how-the-system-works) |
+| 5 | [🤖 Machine Learning Pipeline](#-machine-learning-pipeline) |
+| 6 | [📈 Model Results & Accuracy](#-model-results--accuracy) |
+| 7 | [🔬 Feature Importance](#-feature-importance) |
+| 8 | [🖥️ Web Application Pages](#️-web-application-pages) |
+| 9 | [🔌 REST API Reference](#-rest-api-reference) |
+| 10 | [📁 Project Structure](#-project-structure) |
+| 11 | [🚀 How To Run](#-how-to-run) |
+| 12 | [🧠 Technical Decisions Explained](#-technical-decisions-explained) |
+| 13 | [⚠️ Limitations & Disclaimer](#️-limitations--disclaimer) |
+| 14 | [🔮 Future Roadmap](#-future-roadmap) |
+| 15 | [🛠️ Tech Stack](#️-tech-stack) |
 
 ---
 
-## 📊 Dataset Description
+## 🔍 What Is This Project?
+
+The **Sleep Quality Predictor** is a complete, production-style AI/ML web application that takes a person's **daily lifestyle and health inputs** and predicts whether their sleep quality is:
+
+| 🟢 Good | 🟡 Average | 🔴 Poor |
+|---------|-----------|---------|
+| Sleep quality score **≥ 8** | Sleep quality score **5 – 7** | Sleep quality score **< 5** |
+| Rested, refreshed, healthy sleep | Moderate sleep, room for improvement | Disrupted, insufficient, problematic sleep |
+
+The system is powered by **4 trained ML models**, serves predictions via a **Flask REST API**, and displays everything through a **premium black-and-yellow Next.js dashboard**.
+
+---
+
+## 🎯 The Problem We're Solving
+
+> *Most people don't know how their daily habits directly affect how well they sleep.*
+
+Sleep affects **everything** — mental health, productivity, immune function, and lifespan. Yet it's rarely tracked objectively. This project solves that by:
+
+- ✅ Accepting **12 health & lifestyle inputs** from a user
+- ✅ Running them through **trained ML models** in real time
+- ✅ Returning a **prediction with confidence score** (e.g., 94.5%)
+- ✅ Showing **which factors hurt or help** your sleep
+- ✅ Providing **personalized, actionable recommendations**
+
+---
+
+## 📊 Dataset Overview
 
 **Source:** [Kaggle — Sleep Health and Lifestyle Dataset](https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset)
 
 | Property | Value |
 |----------|-------|
-| **Total Records** | 374 |
-| **Total Columns** | 13 (including Person ID) |
-| **Usable Features** | 12 (after dropping Person ID) |
-| **Target Variable** | `Quality of Sleep` → bucketed into Good / Average / Poor |
-| **Missing Values** | `Sleep Disorder` column: 219 NaN values (filled as `"None"`) |
-| **File Name** | `Sleep_health_and_lifestyle_dataset.csv` |
+| 📦 Total Records | **374 entries** |
+| 📐 Features Used | **12 input features** |
+| 🎯 Target Classes | Good · Average · Poor |
+| ❓ Missing Values | 219 NaN in `Sleep Disorder` (filled as `"None"`) |
 
-### 📋 Feature Descriptions
+### 📋 Input Features Explained
 
-| # | Feature | Type | Range / Values | Description |
-|---|---------|------|----------------|-------------|
-| 1 | **Gender** | Categorical | Male, Female | Biological gender of the individual |
-| 2 | **Age** | Numerical | 27 – 59 | Age in years |
-| 3 | **Occupation** | Categorical | 11 unique jobs | Professional occupation |
-| 4 | **Sleep Duration** | Numerical (float) | 5.8 – 8.5 hrs | Average nightly sleep in hours |
-| 5 | **Quality of Sleep** | Numerical (int) | 1 – 10 | Self-rated quality score (used to create the target label) |
-| 6 | **Physical Activity Level** | Numerical (int) | 30 – 90 min/day | Minutes of daily physical activity |
-| 7 | **Stress Level** | Numerical (int) | 3 – 8 | Self-reported stress on a 1–10 scale |
-| 8 | **BMI Category** | Categorical | Normal, Normal Weight, Overweight, Obese | Body Mass Index classification |
-| 9 | **Blood Pressure** | String → split | e.g. "125/80" | Systolic/Diastolic (split into 2 features) |
-| 10 | **Heart Rate** | Numerical (int) | 65 – 86 bpm | Resting heart rate in beats per minute |
-| 11 | **Daily Steps** | Numerical (int) | 3,000 – 10,000 | Average daily step count |
-| 12 | **Sleep Disorder** | Categorical | None, Insomnia, Sleep Apnea | Diagnosed sleep disorder status |
+| # | Feature | Type | Values | What It Measures |
+|---|---------|------|--------|-----------------|
+| 1 | **Gender** | Category | Male / Female | Biological sex |
+| 2 | **Age** | Number | 27 – 59 yrs | Age in years |
+| 3 | **Occupation** | Category | 11 job types | Type of profession |
+| 4 | **Sleep Duration** | Decimal | 5.8 – 8.5 hrs | Avg hours slept per night |
+| 5 | **Quality of Sleep** | Integer | 1 – 10 | Self-rated sleep quality score |
+| 6 | **Physical Activity** | Integer | 30 – 90 min | Daily exercise in minutes |
+| 7 | **Stress Level** | Integer | 3 – 8 | Self-reported stress (1–10 scale) |
+| 8 | **BMI Category** | Category | Normal / Overweight / Obese | Body weight classification |
+| 9 | **Blood Pressure** | String → 2 numbers | e.g. "125/80" | Systolic & diastolic BP |
+| 10 | **Heart Rate** | Integer | 65 – 86 bpm | Resting heart rate |
+| 11 | **Daily Steps** | Integer | 3,000 – 10,000 | Average step count per day |
+| 12 | **Sleep Disorder** | Category | None / Insomnia / Sleep Apnea | Diagnosed sleep condition |
 
-### 📈 Target Class Distribution
+### 📈 Class Distribution
 
-| Class | Count | Percentage |
-|-------|-------|------------|
-| **Average** | 189 | 50.5% |
-| **Good** | 180 | 48.1% |
-| **Poor** | 5 | **1.3%** ⚠️ |
+| Class | Count | Share |
+|-------|-------|-------|
+| 🟡 Average | 189 | 50.5% |
+| 🟢 Good | 180 | 48.1% |
+| 🔴 Poor | **5** | **1.3%** |
 
-> ⚠️ **Class Imbalance Notice:** The "Poor" class has only **5 records** out of 374. This is a significant imbalance and means the model has very limited data to learn "Poor" sleep patterns. Predictions for this class should be interpreted with caution.
+> [!WARNING]
+> The **"Poor"** class has only **5 records** out of 374. This severe class imbalance means the model has very limited exposure to truly poor sleep patterns. Treat "Poor" predictions with extra caution.
 
-### 🔧 Data Preprocessing Steps
+### 🔧 Data Preprocessing (Step by Step)
 
-1. **Column Name Cleaning** — Stripped whitespace, replaced spaces with underscores, converted to lowercase
-2. **Sleep Disorder NaN Handling** — Filled 219 missing values with `"None"` (not truly missing data; means no disorder)
-3. **Person ID Removal** — Dropped the `person_id` column (no predictive signal)
-4. **Blood Pressure Splitting** — Split the string `"125/80"` into two numerical features: `systolic_bp` and `diastolic_bp`
-5. **Target Label Creation** — Applied the `bucket_quality()` function on `quality_of_sleep`:
-   - Score ≥ 8 → **Good**
-   - Score 5–7 → **Average**
-   - Score < 5 → **Poor**
-6. **Categorical Encoding** — Used `LabelEncoder` on: `gender`, `occupation`, `bmi_category`, `sleep_disorder`
-7. **Target Encoding** — Used `LabelEncoder` on the target: Average=0, Good=1, Poor=2
-8. **Feature Scaling** — Applied `StandardScaler` (zero mean, unit variance) to all 12 features
+```
+1. Clean column names     → strip spaces, lowercase, underscores
+2. Fill NaN values        → Sleep Disorder NaN → "None" (not missing, means no disorder)
+3. Drop Person ID         → no predictive value
+4. Create target label    → Quality of Sleep score → Good / Average / Poor bucket
+5. Split Blood Pressure   → "125/80" string → systolic_bp + diastolic_bp (2 features)
+6. Encode categories      → LabelEncoder on: gender, occupation, bmi_category, sleep_disorder
+7. Encode target          → LabelEncoder: Average=0, Good=1, Poor=2
+8. Scale features         → StandardScaler (zero mean, unit variance) on all 12 features
+```
 
 ---
 
-## 🏗️ System Architecture
+## 🏗️ How The System Works
 
 ```
-┌──────────────────────────────────────────────────────────────────┐
-│                        USER (Web Browser)                        │
-│                      http://localhost:3000                        │
-└──────────────────────────┬───────────────────────────────────────┘
-                           │ HTTP Requests (JSON)
-                           ▼
-┌──────────────────────────────────────────────────────────────────┐
-│                    NEXT.JS FRONTEND (React)                      │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌────────┐ ┌─────────┐ │
-│  │  Home    │ │ Predict  │ │  Result  │ │ Models │ │Dashboard│ │
-│  │  View    │ │  View    │ │  View    │ │Compare │ │ & Hist  │ │
-│  └──────────┘ └──────────┘ └──────────┘ └────────┘ └─────────┘ │
-│                    mlClient.js (API Bridge)                       │
-└──────────────────────────┬───────────────────────────────────────┘
-                           │ REST API Calls (fetch)
-                           ▼
-┌──────────────────────────────────────────────────────────────────┐
-│                   FLASK REST API (app.py)                         │
-│     Port 5000 · CORS Enabled · JSON Responses                    │
-│  ┌────────────┐ ┌────────────┐ ┌──────────┐ ┌───────────────┐  │
-│  │ /api/health│ │/api/predict│ │/api/stats│ │ /api/models   │  │
-│  └────────────┘ └─────┬──────┘ └──────────┘ └───────────────┘  │
-└───────────────────────┬──────────────────────────────────────────┘
-                        │ Calls engine.predict()
-                        ▼
-┌──────────────────────────────────────────────────────────────────┐
-│                 ML ENGINE (ml_engine.py)                          │
-│  ┌────────────────────────────────────────────────────────────┐  │
-│  │  SleepQualityMLEngine Class                                │  │
-│  │  • train_and_save()  → Trains 4 models, saves .pkl files  │  │
-│  │  • load_artifacts()  → Loads pre-trained model artifacts   │  │
-│  │  • predict()         → Encodes, scales, infers, returns    │  │
-│  └────────────────────────────────────────────────────────────┘  │
-│                                                                   │
-│  Serialized Artifacts (ml_artifacts/):                            │
-│  ├── models.pkl             (4 trained classifiers)              │
-│  ├── scaler.pkl             (StandardScaler instance)            │
-│  ├── label_encoders.pkl     (LabelEncoders for 4 cat columns)   │
-│  ├── target_encoder.pkl     (LabelEncoder for target labels)    │
-│  └── metrics.json           (Accuracy, F1, Precision, Recall)   │
-└──────────────────────────────────────────────────────────────────┘
-                        │
-                        ▼
-┌──────────────────────────────────────────────────────────────────┐
-│               KAGGLE DATASET (.csv)                              │
-│         Sleep_health_and_lifestyle_dataset.csv                   │
-│                   374 records × 13 columns                       │
-└──────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│                  USER (Web Browser)                             │
+│               http://localhost:3000                             │
+└────────────────────────┬────────────────────────────────────────┘
+                         │  User fills the form & clicks Predict
+                         ▼
+┌─────────────────────────────────────────────────────────────────┐
+│              NEXT.JS FRONTEND  (React App)                      │
+│  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐  │
+│  │  Home   │ │ Predict │ │ Result  │ │ Models  │ │Dashboard│  │
+│  └─────────┘ └─────────┘ └─────────┘ └─────────┘ └─────────┘  │
+│              ↕ JSON via Fetch API (mlClient.js)                 │
+└────────────────────────┬────────────────────────────────────────┘
+                         │  POST /api/predict
+                         ▼
+┌─────────────────────────────────────────────────────────────────┐
+│             FLASK REST API  (app.py, Port 5000)                 │
+│   /api/health  /api/predict  /api/models  /api/stats            │
+└────────────────────────┬────────────────────────────────────────┘
+                         │  Calls engine.predict()
+                         ▼
+┌─────────────────────────────────────────────────────────────────┐
+│            ML ENGINE  (ml_engine.py)                            │
+│  • encode inputs → scale → run model → decode → add tips        │
+│                                                                 │
+│  ml_artifacts/                                                  │
+│  ├── models.pkl          ← 4 trained classifiers                │
+│  ├── scaler.pkl          ← StandardScaler                       │
+│  ├── label_encoders.pkl  ← Category encoders                    │
+│  ├── target_encoder.pkl  ← Output decoder                       │
+│  └── metrics.json        ← Accuracy, F1, Precision, Recall      │
+└────────────────────────┬────────────────────────────────────────┘
+                         │
+                         ▼
+         Sleep_health_and_lifestyle_dataset.csv
+                  (374 records × 13 columns)
 ```
 
 ---
 
 ## 🤖 Machine Learning Pipeline
 
-### Step-by-Step Workflow
-
-```
-Raw CSV Data
-    │
-    ▼
-[1] Load & Clean Columns
-    │
-    ▼
-[2] Handle Missing Values (Sleep Disorder NaN → "None")
-    │
-    ▼
-[3] Drop Person ID Column
-    │
-    ▼
-[4] Create Target Label (bucket_quality: Good / Average / Poor)
-    │
-    ▼
-[5] Split Blood Pressure → systolic_bp + diastolic_bp
-    │
-    ▼
-[6] Select 12 Features
-    │
-    ▼
-[7] Encode Categorical Features (LabelEncoder × 4)
-    │
-    ▼
-[8] Encode Target Labels (LabelEncoder × 1)
-    │
-    ▼
-[9] Train/Test Split (80% train, 20% test, stratified, random_state=42)
-    │
-    ▼
-[10] Feature Scaling (StandardScaler — fit on train, transform both)
-    │
-    ▼
-[11] Train 4 Models
-    │
-    ▼
-[12] Evaluate (Accuracy, F1, Precision, Recall, Confusion Matrix)
-    │
-    ▼
-[13] Save Artifacts (.pkl files + metrics.json)
-    │
-    ▼
-[14] Prediction Function (encode → scale → predict → decode → tips)
-```
-
 ### Models Trained
 
-| # | Algorithm | Scikit-Learn Class | Key Hyperparameters |
-|---|-----------|-------------------|---------------------|
-| 1 | **Logistic Regression** | `LogisticRegression` | `max_iter=1000, random_state=42` |
-| 2 | **Decision Tree** | `DecisionTreeClassifier` | `max_depth=6, random_state=42` |
-| 3 | **Random Forest** | `RandomForestClassifier` | `n_estimators=200, random_state=42` |
-| 4 | **SVM** | `SVC` | `kernel="rbf", probability=True, random_state=42` |
+| # | Algorithm | Key Settings | Strength |
+|---|-----------|-------------|---------|
+| 🏆 1 | **Random Forest** | 200 trees, `random_state=42` | Best accuracy, handles imbalance well |
+| 2 | **Decision Tree** | `max_depth=6` | Interpretable, fast |
+| 3 | **SVM** | RBF kernel, probability mode | Great at class boundaries |
+| 4 | **Logistic Regression** | `max_iter=1000` | Baseline linear model |
 
----
+### Training Flow
 
-## 📈 Model Comparison & Results
-
-### Accuracy & Performance Metrics
-
-| Model | Accuracy | F1 Score (Weighted) | Precision (Weighted) | Recall (Weighted) | Rank |
-|-------|----------|---------------------|----------------------|-------------------|------|
-| **🏆 Random Forest** | **98.67%** | **98.67%** | **98.70%** | **98.67%** | **#1** |
-| Decision Tree | 97.33% | 97.53% | 98.04% | 97.33% | #2 |
-| SVM | 97.33% | 96.68% | 96.04% | 97.33% | #3 |
-| Logistic Regression | 96.00% | 95.34% | 94.77% | 96.00% | #4 |
-
-### Confusion Matrices (from actual trained model on test set)
-
-**Random Forest (Best Model):**
 ```
-                Predicted
-              Average  Good  Poor
-Actual  Average  [37]     1     0
-        Good       0    [36]    0
-        Poor       0      0   [1]
-```
-> Only **1 misclassification** in the entire test set (1 Average predicted as Good).
-
-**Decision Tree:**
-```
-                Predicted
-              Average  Good  Poor
-Actual  Average  [36]     1     1
-        Good       0    [36]    0
-        Poor       0      0   [1]
-```
-
-**SVM:**
-```
-                Predicted
-              Average  Good  Poor
-Actual  Average  [37]     1     0
-        Good       0    [36]    0
-        Poor       1      0   [0]
-```
-
-**Logistic Regression:**
-```
-                Predicted
-              Average  Good  Poor
-Actual  Average  [36]     2     0
-        Good       0    [36]    0
-        Poor       1      0   [0]
+Raw CSV
+  └─► Load & Clean
+        └─► Handle Missing Values
+              └─► Create Labels (Good/Average/Poor)
+                    └─► Encode Categoricals
+                          └─► 80/20 Train-Test Split (Stratified)
+                                └─► Fit StandardScaler on train
+                                      └─► Train All 4 Models
+                                            └─► Evaluate & Save .pkl files
+                                                  └─► Predict at runtime
 ```
 
 ---
 
-## 🔬 Feature Importance Analysis
+## 📈 Model Results & Accuracy
 
-Feature importances from the **Random Forest** model (the best performer):
+### Performance Comparison
 
-| Rank | Feature | Importance Score | Interpretation |
-|------|---------|-----------------|----------------|
-| 1 | **Stress Level** | 0.2719 (27.2%) | 🔴 Strongest single predictor of sleep quality |
-| 2 | **Sleep Duration** | 0.2122 (21.2%) | ⭐ Second most critical — hours of actual sleep |
-| 3 | **Heart Rate** | 0.1344 (13.4%) | Cardiovascular health indicator |
-| 4 | **Age** | 0.1002 (10.0%) | Demographic factor |
-| 5 | **Occupation** | 0.0516 (5.2%) | Job type affects stress and schedule |
-| 6 | **Daily Steps** | 0.0506 (5.1%) | Proxy for overall physical activity |
-| 7 | **BMI Category** | 0.0396 (4.0%) | Body composition signal |
-| 8 | **Physical Activity Level** | 0.0361 (3.6%) | Minutes of exercise per day |
-| 9 | **Diastolic BP** | 0.0352 (3.5%) | Blood pressure component |
-| 10 | **Systolic BP** | 0.0319 (3.2%) | Blood pressure component |
-| 11 | **Sleep Disorder** | 0.0283 (2.8%) | Diagnosed conditions |
-| 12 | **Gender** | 0.0081 (0.8%) | Least predictive feature |
+| Rank | Model | Accuracy | F1 Score | Precision | Recall |
+|------|-------|----------|----------|-----------|--------|
+| 🥇 **#1** | **Random Forest** | **98.67%** | **98.67%** | **98.70%** | **98.67%** |
+| 🥈 #2 | Decision Tree | 97.33% | 97.53% | 98.04% | 97.33% |
+| 🥉 #3 | SVM | 97.33% | 96.68% | 96.04% | 97.33% |
+| 4 | Logistic Regression | 96.00% | 95.34% | 94.77% | 96.00% |
 
-**Key Insight:** `stress_level` + `sleep_duration` together account for **~48%** of the model's decision-making.
+### Confusion Matrix — Random Forest (Best)
+
+```
+                  Predicted →
+                  Average   Good   Poor
+Actual ↓ Average  [ 37 ]     1      0      → Only 1 mistake
+         Good       0      [ 36 ]   0
+         Poor       0        0    [ 1 ]
+```
+
+> ✅ **Only 1 misclassification** in the entire 75-record test set — an "Average" predicted as "Good".
 
 ---
 
-## 🖥️ Web Application — Frontend
+## 🔬 Feature Importance
 
-### Technology
+> *What does the model rely on most to make its prediction?*
 
-| Component | Technology |
-|-----------|-----------|
-| Framework | **Next.js** (React, App Router, JavaScript) |
-| Styling | **Vanilla CSS** (custom design system) |
-| Icons | **Lucide React** (modern open-source icon library) |
-| State Management | **React useState/useEffect hooks** |
-| API Communication | **Fetch API** via custom `mlClient.js` bridge |
+| Rank | Feature | Importance | Impact |
+|------|---------|-----------|--------|
+| 🔴 **#1** | **Stress Level** | **27.2%** | Strongest single predictor |
+| 🟠 **#2** | **Sleep Duration** | **21.2%** | Direct hours of sleep |
+| 🟡 #3 | Heart Rate | 13.4% | Cardiovascular health signal |
+| 🟡 #4 | Age | 10.0% | Demographic factor |
+| 🟢 #5 | Occupation | 5.2% | Affects schedule & stress |
+| 🟢 #6 | Daily Steps | 5.1% | Physical activity proxy |
+| ⚪ #7 | BMI Category | 4.0% | Body composition |
+| ⚪ #8 | Physical Activity | 3.6% | Exercise minutes |
+| ⚪ #9 | Diastolic BP | 3.5% | Blood pressure |
+| ⚪ #10 | Systolic BP | 3.2% | Blood pressure |
+| ⚪ #11 | Sleep Disorder | 2.8% | Diagnosed condition |
+| ⚪ #12 | Gender | 0.8% | Least predictive |
 
-### Design System — Black & Yellow Theme
+> [!TIP]
+> **Stress Level + Sleep Duration together account for ~48% of the model's decision.** Reducing stress and getting consistent sleep are the two most impactful changes a person can make.
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--bg-primary` | `#08080A` | Main page background |
-| `--bg-surface` | `#111115` | Section backgrounds |
-| `--bg-card` | `#16161C` | Card components |
-| `--accent-yellow` | `#FFD600` | Primary accent, CTAs, highlights |
-| `--accent-yellow-hover` | `#FFE500` | Hover states |
-| `--text-white` | `#FFFFFF` | Primary headings |
-| `--text-gray` | `#A1A1AA` | Secondary text |
-| `--text-muted` | `#71717A` | Labels, captions |
-| `--border-subtle` | `#27272A` | Card borders |
-| `--color-good` | `#10B981` | Good prediction badge |
-| `--color-average` | `#F59E0B` | Average prediction badge |
-| `--color-poor` | `#EF4444` | Poor prediction badge |
+---
 
-### 5 Application Pages / Views
+## 🖥️ Web Application Pages
 
-#### Page 1 — Home (Landing)
-- Hero section with project title and tagline
-- "Predict Sleep Quality" primary yellow CTA button
-- Three statistics cards: **4 ML Models** · **374 Dataset Records** · **~98.7% RF Accuracy**
-- "How The AI Model Works" explanation card listing all 12 features
-- "3 Target Sleep Quality Levels" card showing Good / Average / Poor thresholds
+The frontend is a **Single-Page Application** built with Next.js using React state for tab navigation — no page reloads, instant transitions.
 
-#### Page 2 — Prediction Input Form
-- Three input sections organized in a responsive grid:
-  - **Personal Information:** Gender (dropdown), Age (slider), Occupation (dropdown)
-  - **Sleep Information:** Sleep Duration (slider), Quality Rating (slider), Physical Activity (slider), Stress Level (slider)
-  - **Health & Vitals:** BMI Category (dropdown), Systolic BP (number), Diastolic BP (number), Heart Rate (number), Daily Steps (number), Sleep Disorder (dropdown)
-- **Quick Scenario Presets** — One-click auto-fill buttons:
+### 📄 Page 1 — Home (Landing)
+- Hero section with animated title and tagline
+- Big yellow **"Predict Sleep Quality"** CTA button
+- Stats cards: **4 Models** · **374 Records** · **98.7% Accuracy**
+- Overview of all 12 input features
+- Explanation of Good / Average / Poor classes
+
+### 📄 Page 2 — Prediction Form
+- **Personal Info:** Gender, Age (slider), Occupation
+- **Sleep Info:** Sleep Duration, Quality Rating, Physical Activity, Stress Level
+- **Health Vitals:** BMI, Blood Pressure, Heart Rate, Daily Steps, Sleep Disorder
+- **One-click Presets:**
   - ⚡ Tech Worker (High Stress)
   - 🏃 Healthy Athlete
   - 🩺 Shift Nurse (Sleep Apnea)
   - ⚠️ Sedentary Overweight
-- Model Selection dropdown (Random Forest default)
-- Yellow "Predict Sleep Quality" submit button + "Reset Form" secondary button
+- Model selector dropdown (Random Forest default)
 
-#### Page 3 — Prediction Result
-- Large prediction badge: **GOOD**, **AVERAGE**, or **POOR** with color-coded icon
-- Model confidence percentage bar (e.g. 98.7%)
-- Class probability distribution bars (Good %, Average %, Poor %)
-- Key Contributing Factors table (feature → value → Positive/Negative/Neutral impact)
-- AI Recommendations panel with actionable tips
+### 📄 Page 3 — Prediction Result
+- Large color-coded badge: **GOOD** / **AVERAGE** / **POOR**
+- Confidence percentage meter (e.g. 94.5%)
+- Probability bars for all 3 classes
+- Key Contributing Factors table (positive / negative / neutral)
+- Personalized AI Recommendations panel
 - Medical disclaimer notice
 
-#### Page 4 — Model Comparison
-- 4 model accuracy cards (Random Forest highlighted as "BEST MODEL" with yellow crown badge)
-- Comparative accuracy bar chart with visual progress bars
-- Detailed metrics comparison table (Accuracy, F1, Precision, Recall)
-- Interactive Confusion Matrix visualizer with model selector buttons
+### 📄 Page 4 — Model Comparison
+- Accuracy cards for all 4 models
+- Visual bar chart comparing performance
+- Metrics table (Accuracy, F1, Precision, Recall)
+- Interactive Confusion Matrix viewer per model
 
-#### Page 5 — User Dashboard
-- Latest sleep overview widgets: Predicted Quality, Sleep Duration, Stress Level, BMI Category
-- Prediction History table with columns: Date, Sleep Quality, Model Used, Confidence, Duration, Stress, Status
+### 📄 Page 5 — Dashboard
+- Live overview: Predicted Quality, Sleep Duration, Stress, BMI
+- Full prediction history table (last 50 predictions)
 - Export to JSON button
 - Clear History button
 
-### Reusable UI Components
-
-| Component File | Purpose |
-|---------------|---------|
-| `Navbar.js` | Top navigation bar with page tabs and API status indicator |
-| `Footer.js` | Footer with project info, ML specs, and medical disclaimer |
-| `HomeView.js` | Landing page hero section and feature overview |
-| `PredictView.js` | Full prediction input form with validation and presets |
-| `ResultView.js` | Prediction result display with probabilities and recommendations |
-| `ComparisonView.js` | Model comparison charts, table, and confusion matrix viewer |
-| `DashboardView.js` | User analytics dashboard with prediction history |
-
 ---
 
-## 🔌 REST API — Backend
+## 🔌 REST API Reference
 
-### Server Details
+> **Base URL:** `http://localhost:5000`
 
-| Property | Value |
-|----------|-------|
-| Framework | **Flask** (Python) |
-| CORS | Enabled via `flask_cors` |
-| Host | `0.0.0.0` |
-| Port | `5000` |
-| Response Format | JSON |
-
-### API Endpoints
-
-#### `GET /api/health`
-Returns server health status.
+### `GET /api/health`
 ```json
-{
-  "status": "healthy",
-  "service": "Sleep Quality Predictor API"
-}
+{ "status": "healthy", "service": "Sleep Quality Predictor API" }
 ```
 
-#### `GET /api/stats`
-Returns dataset and system statistics.
-```json
-{
-  "dataset_records": 374,
-  "model_count": 4,
-  "best_model": "Random Forest",
-  "best_accuracy": "98.7%",
-  "features_count": 12,
-  "occupations": ["Software Engineer", "Doctor", "Sales Representative", "Teacher",
-                   "Nurse", "Engineer", "Accountant", "Scientist", "Lawyer",
-                   "Salesperson", "Manager"],
-  "bmi_categories": ["Normal", "Normal Weight", "Overweight", "Obese"],
-  "sleep_disorders": ["None", "Insomnia", "Sleep Apnea"],
-  "genders": ["Male", "Female"]
-}
-```
+### `GET /api/stats`
+Returns dataset info, supported occupations, BMI categories, and more.
 
-#### `GET /api/models`
-Returns trained model performance metrics and confusion matrices.
+### `GET /api/models`
+Returns trained model metrics and confusion matrices for all 4 models.
 
-#### `POST /api/predict`
-Accepts user input JSON, runs inference, returns prediction.
+### `POST /api/predict`
 
-**Request Body Example:**
+**Request:**
 ```json
 {
   "gender": "Male",
@@ -462,7 +320,7 @@ Accepts user input JSON, runs inference, returns prediction.
 }
 ```
 
-**Response Example:**
+**Response:**
 ```json
 {
   "predicted_quality": "Average",
@@ -471,196 +329,147 @@ Accepts user input JSON, runs inference, returns prediction.
   "model_used": "Random Forest",
   "tips": [
     "Increase moderate daytime physical activity to enhance deep sleep quality.",
-    "Maintain a strict sleep-wake schedule, even on weekends.",
-    "Keep bedroom ambient temperature cool and dark."
+    "Maintain a strict sleep-wake schedule, even on weekends."
   ],
   "contributing_factors": [
-    { "feature": "Sleep Duration", "val": "6.5 hrs", "impact": "Negative" },
-    { "feature": "Stress Level", "val": "7 / 10", "impact": "Negative" }
+    { "feature": "Stress Level", "val": "7 / 10", "impact": "Negative" },
+    { "feature": "Sleep Duration", "val": "6.5 hrs", "impact": "Negative" }
   ],
-  "disclaimer": "This prediction is based on machine-learning patterns..."
+  "disclaimer": "This is not a medical diagnosis..."
 }
 ```
 
-#### `GET /api/history`
-Returns stored prediction history (last 50 entries).
+### `GET /api/history`
+Returns the last 50 predictions stored locally.
 
-#### `DELETE /api/history`
+### `DELETE /api/history`
 Clears all prediction history.
 
 ---
 
-## 📁 Project File Structure
+## 📁 Project Structure
 
 ```
 ML2/
 │
-├── Sleep_health_and_lifestyle_dataset.csv    # Kaggle dataset (374 records)
-├── sleep_quality_predictor.py                # Original reference ML script
-├── ml_engine.py                              # Production ML engine class
-├── app.py                                    # Flask REST API server
+├── 📄 app.py                              ← Flask REST API server
+├── 📄 ml_engine.py                        ← ML engine (train + predict)
+├── 📄 sleep_quality_predictor.py          ← Original reference script
+├── 📄 requirements.txt                    ← Python dependencies
+├── 📄 Sleep_health_and_lifestyle_dataset.csv  ← Dataset (374 records)
 │
-├── ml_artifacts/                             # Serialized model files
-│   ├── models.pkl                            # 4 trained classifiers (~433 KB)
-│   ├── scaler.pkl                            # StandardScaler instance
-│   ├── label_encoders.pkl                    # LabelEncoders for categorical columns
-│   ├── target_encoder.pkl                    # LabelEncoder for target labels
-│   ├── metrics.json                          # Model performance metrics
-│   └── history.json                          # Prediction history log
+├── 📂 ml_artifacts/                       ← Serialized model files
+│   ├── models.pkl                         ← 4 trained classifiers
+│   ├── scaler.pkl                         ← StandardScaler
+│   ├── label_encoders.pkl                 ← Category encoders
+│   ├── target_encoder.pkl                 ← Output label decoder
+│   ├── metrics.json                       ← Accuracy, F1, etc.
+│   └── history.json                       ← Prediction history log
 │
-├── archive (1)/                              # Original Kaggle download
-│   └── Sleep_health_and_lifestyle_dataset.csv
-│
-└── frontend/                                 # Next.js Web Application
-    ├── package.json                          # Node.js dependencies
-    ├── next.config.mjs                       # Next.js configuration
-    ├── public/                               # Static assets
+└── 📂 frontend/                           ← Next.js Web Application
+    ├── package.json
+    ├── next.config.mjs
     └── src/
         ├── app/
-        │   ├── layout.js                     # Root HTML layout + metadata
-        │   ├── page.js                       # Main SPA page (state + routing)
-        │   └── globals.css                   # Design system (Black & Yellow theme)
+        │   ├── layout.js                  ← Root HTML + metadata
+        │   ├── page.js                    ← Main SPA (state + routing)
+        │   └── globals.css                ← Black & Yellow design system
         ├── components/
-        │   ├── Navbar.js                     # Navigation header + API status
-        │   ├── Footer.js                     # Footer with disclaimer
-        │   ├── HomeView.js                   # Landing / Hero page
-        │   ├── PredictView.js                # Prediction input form
-        │   ├── ResultView.js                 # Prediction result display
-        │   ├── ComparisonView.js             # Model comparison & charts
-        │   └── DashboardView.js              # User dashboard & history
+        │   ├── Navbar.js                  ← Navigation + API status
+        │   ├── Footer.js                  ← Footer + disclaimer
+        │   ├── HomeView.js                ← Landing hero page
+        │   ├── PredictView.js             ← Input form + presets
+        │   ├── ResultView.js              ← Prediction result display
+        │   ├── ComparisonView.js          ← Model comparison charts
+        │   └── DashboardView.js           ← History + analytics
         └── lib/
-            └── mlClient.js                   # API bridge + offline fallback
+            └── mlClient.js               ← API bridge + offline fallback
 ```
 
 ---
 
-## 🚀 How to Run the Project
+## 🚀 How To Run
 
 ### Prerequisites
 
-| Requirement | Version |
-|------------|---------|
-| Python | 3.10+ |
-| Node.js | 18+ |
-| npm | 9+ |
+| Tool | Required Version |
+|------|-----------------|
+| Python | 3.10 or higher |
+| Node.js | 18 or higher |
+| npm | 9 or higher |
 
-### Python Dependencies
-
-```
-pandas
-numpy
-scikit-learn
-joblib
-flask
-flask-cors
-```
-
-Install with:
-```bash
-pip install pandas numpy scikit-learn joblib flask flask-cors
-```
-
-### Step 1 — Train the ML Models (first time only)
+### Step 1 — Install Python Dependencies
 
 ```bash
-cd ML2
+pip install -r requirements.txt
+```
+
+### Step 2 — Train ML Models *(first time only)*
+
+```bash
 python ml_engine.py
 ```
 
-This reads the CSV, trains 4 models, and saves artifacts into `ml_artifacts/`.
+This reads the CSV, trains all 4 models, and saves the artifacts into `ml_artifacts/`. Takes ~5–10 seconds.
 
-### Step 2 — Start the Python Backend API
+### Step 3 — Start the Backend API
 
 ```bash
 python app.py
 ```
 
-The server starts on **http://127.0.0.1:5000**.
+> ✅ API running at **http://localhost:5000**
 
-### Step 3 — Install Frontend Dependencies (first time only)
+### Step 4 — Install Frontend Dependencies *(first time only)*
 
 ```bash
 cd frontend
 npm install
 ```
 
-### Step 4 — Start the Next.js Frontend
+### Step 5 — Start the Frontend
 
 ```bash
 npm run dev
 ```
 
-The web app starts on **http://localhost:3000**.
-
-### Step 5 — Open the Application
-
-Open your browser and navigate to:
-
-```
-http://localhost:3000
-```
-
----
-
-## 🖼️ Screenshots & UI Pages
-
-### Page Layout Summary
-
-| Page | Tab Label | Description |
-|------|-----------|-------------|
-| 1 | **Home** | Hero landing with statistics and ML overview |
-| 2 | **Predict Sleep** | Interactive form with sliders, dropdowns, and presets |
-| 3 | **Result View** | Prediction result with confidence meter and recommendations |
-| 4 | **Model Specs** | 4-model comparison with bar charts and confusion matrices |
-| 5 | **Dashboard** | Overview widgets and prediction history table |
+> ✅ App running at **http://localhost:3000**
 
 ### User Flow
 
 ```
-User Opens App
-      │
-      ▼
-  [HOME PAGE]
-  Reads overview, clicks "Predict Sleep Quality"
-      │
-      ▼
-  [PREDICT PAGE]
-  Fills form OR clicks a preset → clicks "Predict Sleep Quality"
-      │
-      ▼
-  [Loading State]  (0.8s processing animation)
-      │
-      ▼
-  [RESULT PAGE]
-  Sees prediction (GOOD/AVERAGE/POOR), confidence, factors, tips
-      │
-      ├──→ [PREDICT AGAIN] → back to form
-      └──→ [VIEW MODELS]  → model comparison page
-                               │
-                               ▼
-                         [MODEL COMPARISON]
-                         Bar charts, table, confusion matrices
-                               │
-                               ▼
-                          [DASHBOARD]
-                          History table, export, clear
+Open http://localhost:3000
+         │
+         ▼
+    [HOME]  ──► Click "Predict Sleep Quality"
+         │
+         ▼
+    [PREDICT]  ──► Fill the form (or use a preset)  ──► Click "Predict"
+         │
+         ▼ (0.8s processing animation)
+    [RESULT]  ──► See GOOD / AVERAGE / POOR + confidence + tips
+         │
+         ├──► [PREDICT AGAIN]
+         └──► [VIEW MODELS]  ──► Bar charts, confusion matrices
+                                        │
+                                        ▼
+                                  [DASHBOARD]  ──► History table, export
 ```
 
 ---
 
-## 🧠 Key Technical Decisions
+## 🧠 Technical Decisions Explained
 
-| Decision | Rationale |
-|----------|-----------|
-| **Random Forest as default model** | Achieved highest accuracy (98.67%) and best balanced F1 score |
-| **Client-side ML fallback** | If Python server is offline, the frontend uses a JavaScript rule-based engine mirroring the model's decision boundaries so the app never fails |
-| **Blood Pressure split** | Original dataset stores BP as a string `"125/80"`. Split into `systolic_bp` and `diastolic_bp` for numerical model input |
-| **StandardScaler** | ML algorithms like SVM and Logistic Regression are sensitive to feature scales. StandardScaler normalizes all features to zero mean and unit variance |
-| **LabelEncoder** | Used instead of OneHotEncoder to keep the feature space small (12 features instead of 30+), which works well with tree-based models |
-| **Stratified train/test split** | With only 5 "Poor" records, stratification ensures at least 1 Poor sample appears in the test set |
-| **80/20 split** | Standard split ratio. Results in ~299 train and ~75 test records |
-| **Vanilla CSS** | Avoided CSS frameworks for full control over the premium black-and-yellow AI dashboard aesthetic |
-| **SPA navigation** | Used React state-based tab switching instead of Next.js file-based routing for a smoother, faster single-page experience |
+| Decision | Why We Made It |
+|----------|---------------|
+| **Random Forest as default** | Highest accuracy (98.67%) with the best balanced F1 across all 3 classes |
+| **Client-side JS fallback** | If the Python API is offline, the frontend runs a rule-based JS engine — the app never fully breaks |
+| **Blood Pressure splitting** | The dataset stores BP as a string `"125/80"`. We split it into `systolic_bp` and `diastolic_bp` for numerical processing |
+| **StandardScaler** | SVM and Logistic Regression are scale-sensitive. Without normalization, large-range features (steps: 10,000) dominate small ones (stress: 1–10) |
+| **LabelEncoder over OneHotEncoder** | Keeps the feature count at 12 instead of 30+. Works well with tree-based models and avoids high dimensionality |
+| **Stratified split** | With only 5 "Poor" samples, random splitting might leave 0 in the test set. Stratification ensures proportional representation |
+| **Vanilla CSS** | Gives full control over the premium black-and-yellow aesthetic. No Tailwind class conflicts or framework overhead |
+| **SPA navigation** | React state-based tab switching gives instant, fluid page transitions vs Next.js file-based routing |
 
 ---
 
@@ -668,93 +477,83 @@ User Opens App
 
 ### Dataset Limitations
 
-1. **Small dataset** — Only 374 records. Production ML systems typically need thousands or millions of samples
-2. **Severe class imbalance** — Only **5 "Poor"** records (1.3%). The model has very limited exposure to poor sleep patterns
-3. **Self-reported data** — Quality of Sleep, Stress Level, and Physical Activity are self-reported, introducing subjectivity bias
-4. **Limited demographic range** — Ages 27–59 only; no children, teens, or elderly individuals
-5. **No temporal data** — No time series or longitudinal tracking; each record is a snapshot
-6. **Geographic bias** — Dataset origin and population demographics are not specified
+- 📉 **Small dataset** — Only 374 records. Real production systems use millions of samples
+- ❗ **Severe class imbalance** — Only 5 "Poor" records (1.3%). Model barely knows what poor sleep looks like
+- 🧾 **Self-reported data** — Stress, quality, and activity levels are subjective
+- 📅 **No time-series data** — Each record is a single snapshot, not a trend over time
+- 🌍 **Unknown demographics** — Population origin and diversity are unspecified
 
 ### Model Limitations
 
-1. **High accuracy may be misleading** — The ~98.7% accuracy is partly due to the near-binary class distribution (Average vs Good dominate)
-2. **Poor class unreliable** — With only 5 training samples for "Poor", the model cannot reliably identify genuinely poor sleep
-3. **No cross-validation reported** — The final metrics are from a single 80/20 split, not k-fold cross-validation
-4. **Feature leakage risk** — `quality_of_sleep` is used to create the target label AND could correlate directly with it
+- 📊 **High accuracy can mislead** — 98.7% is partly because Average vs Good dominate (no hard cases)
+- ❌ **"Poor" class is unreliable** — Only 5 training samples makes this prediction untrustworthy
+- 🔁 **No cross-validation** — Metrics come from a single 80/20 split, not k-fold validation
+- ⚠️ **Potential feature leakage** — `quality_of_sleep` is both used to create the label AND is an input feature
 
-### Medical Disclaimer
-
-> ⚠️ **This prediction is based on machine-learning patterns in the provided dataset (374 records, with only 5 "Poor" class instances) and is intended strictly for informational and academic demonstration purposes. It is NOT a medical diagnosis. Always consult a qualified healthcare professional for sleep-related health concerns.**
-
----
-
-## 🔮 Future Improvements
-
-| Improvement | Description |
-|-------------|-------------|
-| **Larger dataset** | Incorporate more diverse, clinical-grade sleep datasets (e.g., MESA, SHHS) |
-| **Deep learning** | Experiment with neural networks for pattern detection |
-| **Cross-validation** | Implement k-fold cross-validation for more robust evaluation |
-| **SMOTE oversampling** | Address "Poor" class imbalance with Synthetic Minority Oversampling |
-| **Feature engineering** | Create interaction features (e.g., stress × sleep duration) |
-| **Time-series input** | Accept multiple nights of sleep data for trend analysis |
-| **User accounts** | Add authentication for persistent personal dashboards |
-| **Mobile app** | Build a React Native companion app |
-| **Wearable integration** | Connect to Fitbit/Apple Watch for automated data input |
-| **PDF export** | Generate downloadable sleep quality reports |
+> [!CAUTION]
+> **Medical Disclaimer:** This tool is for **academic and informational purposes only**. It is **NOT a medical diagnosis**. The prediction is based on patterns in a 374-record dataset with only 5 "Poor" class instances. Always consult a qualified healthcare professional for sleep health concerns.
 
 ---
 
-## 🛠️ Technologies Used
+## 🔮 Future Roadmap
 
-### Backend
+| Priority | Improvement | Description |
+|----------|-------------|-------------|
+| 🔴 High | **SMOTE Oversampling** | Fix "Poor" class imbalance with synthetic samples |
+| 🔴 High | **k-Fold Cross Validation** | More robust evaluation than single 80/20 split |
+| 🟡 Medium | **Larger Dataset** | Integrate clinical sleep datasets (MESA, SHHS) |
+| 🟡 Medium | **Feature Engineering** | Create interaction features like stress × sleep duration |
+| 🟡 Medium | **Time-series Input** | Track multiple nights for trend analysis |
+| 🟢 Low | **Deep Learning** | Neural networks for complex pattern detection |
+| 🟢 Low | **User Accounts** | Auth system for persistent personal dashboards |
+| 🟢 Low | **Wearable Integration** | Connect to Fitbit / Apple Watch for auto-input |
+| 🟢 Low | **Mobile App** | React Native companion app |
+| 🟢 Low | **PDF Export** | Downloadable sleep quality health reports |
 
-| Technology | Purpose |
-|-----------|---------|
-| **Python 3.11** | Core programming language |
-| **Pandas** | Data loading, cleaning, and manipulation |
-| **NumPy** | Numerical computations |
-| **Scikit-Learn** | Machine learning model training and evaluation |
-| **Joblib** | Model serialization (.pkl files) |
-| **Flask** | Lightweight REST API web server |
-| **Flask-CORS** | Cross-Origin Resource Sharing for API access |
+---
 
-### Frontend
+## 🛠️ Tech Stack
 
-| Technology | Purpose |
-|-----------|---------|
-| **Next.js 16** | React framework with App Router |
-| **React 19** | UI component library |
+### 🐍 Backend
+
+| Technology | Role |
+|-----------|------|
+| **Python 3.11** | Core language |
+| **Pandas** | Data loading, cleaning, manipulation |
+| **NumPy** | Numerical operations |
+| **Scikit-Learn** | ML model training and evaluation |
+| **Joblib** | Model serialization (`.pkl` files) |
+| **Flask** | Lightweight REST API server |
+| **Flask-CORS** | Enables cross-origin requests from the frontend |
+
+### ⚛️ Frontend
+
+| Technology | Role |
+|-----------|------|
+| **Next.js 16** | React framework (App Router) |
+| **React 19** | UI component system |
 | **Vanilla CSS** | Custom black & yellow design system |
-| **Lucide React** | Premium SVG icon library |
-| **Fetch API** | HTTP client for REST API communication |
-
-### Development Tools
-
-| Tool | Purpose |
-|------|---------|
-| **npm** | Package management |
-| **Node.js v24** | JavaScript runtime |
-| **VS Code** | Code editor |
+| **Lucide React** | SVG icon library |
+| **Fetch API** | HTTP client for API calls |
 
 ---
 
 ## 📚 References
 
-1. **Dataset:** [Kaggle — Sleep Health and Lifestyle Dataset](https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset)
-2. **Scikit-Learn Documentation:** [https://scikit-learn.org/stable/](https://scikit-learn.org/stable/)
-3. **Next.js Documentation:** [https://nextjs.org/docs](https://nextjs.org/docs)
-4. **Flask Documentation:** [https://flask.palletsprojects.com/](https://flask.palletsprojects.com/)
-5. **Random Forest Classifier:** Breiman, L. (2001). Random Forests. *Machine Learning*, 45(1), 5–32.
+1. 📦 **Dataset:** [Kaggle — Sleep Health and Lifestyle Dataset](https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset)
+2. 📖 **Scikit-Learn Docs:** [scikit-learn.org](https://scikit-learn.org/stable/)
+3. 📖 **Next.js Docs:** [nextjs.org/docs](https://nextjs.org/docs)
+4. 📖 **Flask Docs:** [flask.palletsprojects.com](https://flask.palletsprojects.com/)
+5. 📄 **Random Forest:** Breiman, L. (2001). *Random Forests. Machine Learning*, 45(1), 5–32.
 
 ---
 
 <div align="center">
 
-**Built with 🌙 for AI/ML Academic Project Demonstration**
+Built with 🌙 passion for **AI/ML & Health Technology**
 
-*Sleep Quality Predictor System — 2026*
+*Sleep Quality Predictor — Akash · 2026*
+
+⭐ If you found this useful, consider starring the repository!
 
 </div>
-#   S l e e p - Q u a l i t y - P r e d i c t o r  
- 
