@@ -1,0 +1,160 @@
+{
+  "Logistic Regression": {
+    "name": "Logistic Regression",
+    "purpose": "Classification baseline model",
+    "color": "#3B82F6",
+    "accuracy": 0.96,
+    "accuracy_percent": 96.0,
+    "f1_score": 0.9534,
+    "precision": 0.9477,
+    "recall": 0.96,
+    "confusion_matrix": [
+      [
+        36,
+        2,
+        0
+      ],
+      [
+        0,
+        36,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ]
+    ],
+    "classes": [
+      "Average",
+      "Good",
+      "Poor"
+    ],
+    "feature_importances": {}
+  },
+  "Decision Tree": {
+    "name": "Decision Tree",
+    "purpose": "Rule-based non-linear classification",
+    "color": "#10B981",
+    "accuracy": 0.9733,
+    "accuracy_percent": 97.33,
+    "f1_score": 0.9753,
+    "precision": 0.9804,
+    "recall": 0.9733,
+    "confusion_matrix": [
+      [
+        36,
+        1,
+        1
+      ],
+      [
+        0,
+        36,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "classes": [
+      "Average",
+      "Good",
+      "Poor"
+    ],
+    "feature_importances": {
+      "gender": 0.0,
+      "age": 0.0,
+      "occupation": 0.0,
+      "sleep_duration": 0.2936,
+      "physical_activity_level": 0.0,
+      "stress_level": 0.6052,
+      "bmi_category": 0.0,
+      "heart_rate": 0.0,
+      "daily_steps": 0.0507,
+      "systolic_bp": 0.0,
+      "diastolic_bp": 0.0505,
+      "sleep_disorder": 0.0
+    }
+  },
+  "Random Forest": {
+    "name": "Random Forest",
+    "purpose": "Ensemble classification (Best Performer)",
+    "color": "#FFD600",
+    "accuracy": 0.9867,
+    "accuracy_percent": 98.67,
+    "f1_score": 0.9867,
+    "precision": 0.987,
+    "recall": 0.9867,
+    "confusion_matrix": [
+      [
+        37,
+        1,
+        0
+      ],
+      [
+        0,
+        36,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "classes": [
+      "Average",
+      "Good",
+      "Poor"
+    ],
+    "feature_importances": {
+      "gender": 0.0081,
+      "age": 0.1002,
+      "occupation": 0.0516,
+      "sleep_duration": 0.2122,
+      "physical_activity_level": 0.0361,
+      "stress_level": 0.2719,
+      "bmi_category": 0.0396,
+      "heart_rate": 0.1344,
+      "daily_steps": 0.0506,
+      "systolic_bp": 0.0319,
+      "diastolic_bp": 0.0352,
+      "sleep_disorder": 0.0283
+    }
+  },
+  "SVM": {
+    "name": "SVM",
+    "purpose": "Support Vector Classification with RBF Kernel",
+    "color": "#8B5CF6",
+    "accuracy": 0.9733,
+    "accuracy_percent": 97.33,
+    "f1_score": 0.9668,
+    "precision": 0.9604,
+    "recall": 0.9733,
+    "confusion_matrix": [
+      [
+        37,
+        1,
+        0
+      ],
+      [
+        0,
+        36,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ]
+    ],
+    "classes": [
+      "Average",
+      "Good",
+      "Poor"
+    ],
+    "feature_importances": {}
+  }
+}

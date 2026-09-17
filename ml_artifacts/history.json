@@ -1,0 +1,72 @@
+[
+  {
+    "id": 5,
+    "date": "9/17/2026, 9:35:17 PM",
+    "gender": "Male",
+    "age": "27",
+    "occupation": "Software Engineer",
+    "sleep_duration": "5.4",
+    "quality_rating": "4",
+    "predicted_quality": "Average",
+    "confidence": 2452.5,
+    "model_used": "Random Forest",
+    "stress_level": "3",
+    "bmi_category": "Normal"
+  },
+  {
+    "id": 4,
+    "date": "8/14/2026, 10:41:53 PM",
+    "gender": "Female",
+    "age": 38,
+    "occupation": "Nurse",
+    "sleep_duration": 5,
+    "quality_rating": 4,
+    "predicted_quality": "Average",
+    "confidence": 52.5,
+    "model_used": "Random Forest",
+    "stress_level": 8,
+    "bmi_category": "Overweight"
+  },
+  {
+    "id": 3,
+    "date": "8/14/2026, 10:41:42 PM",
+    "gender": "Male",
+    "age": 28,
+    "occupation": "Software Engineer",
+    "sleep_duration": 6.5,
+    "quality_rating": 6,
+    "predicted_quality": "Average",
+    "confidence": 90.0,
+    "model_used": "Random Forest",
+    "stress_level": 7,
+    "bmi_category": "Normal"
+  },
+  {
+    "id": 2,
+    "date": "Just Now",
+    "gender": "Male",
+    "age": 28,
+    "occupation": "Software Engineer",
+    "sleep_duration": 6.5,
+    "quality_rating": 6,
+    "predicted_quality": "Average",
+    "confidence": 90.0,
+    "model_used": "Random Forest",
+    "stress_level": 7,
+    "bmi_category": "Normal"
+  },
+  {
+    "id": 1,
+    "date": "8/14/2026, 9:08:55 PM",
+    "gender": "Male",
+    "age": "27",
+    "occupation": "Lawyer",
+    "sleep_duration": "5.8",
+    "quality_rating": "7",
+    "predicted_quality": "Average",
+    "confidence": 67.0,
+    "model_used": "Random Forest",
+    "stress_level": "10",
+    "bmi_category": "Normal Weight"
+  }
+]
